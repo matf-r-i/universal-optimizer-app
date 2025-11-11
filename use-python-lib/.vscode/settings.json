@@ -27,6 +27,7 @@
         "optimas",
         "pathlib",
         "pipx",
+        "pylint",
         "quickstart",
         "Radosavljević",
         "rdcs",
