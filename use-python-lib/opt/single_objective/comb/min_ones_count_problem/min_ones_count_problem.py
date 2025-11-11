@@ -1,7 +1,6 @@
 import sys
 import os
 from pathlib import Path
-from typing import Optional
 directory = Path(__file__).resolve()
 sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
@@ -11,6 +10,8 @@ root_dir = directory.parent.parent.parent.parent.parent
 sys.path.append(str(root_dir))
 if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
         sys.path.append(str(root_dir/ "lib"))
+
+from typing import Optional
 
 from uo.problem.problem import Problem
 from uo.utils.logger import logger

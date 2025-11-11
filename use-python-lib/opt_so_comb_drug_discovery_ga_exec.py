@@ -1,10 +1,20 @@
 import sys
+import os
+from pathlib import Path
+directory = Path(__file__).resolve()
+root_dir = directory.parent
+sys.path.append(str(root_dir))
+if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
+        sys.path.append(str(root_dir/ "lib"))
+        
 import json
+
 from PyQt5.QtWidgets import QApplication, QWidget, QSlider, QDesktopWidget, QPushButton, QVBoxLayout, QHBoxLayout, QGridLayout, QLabel, QLineEdit, QScrollArea, QGroupBox
 from PyQt5.QtGui import QImage, QPixmap, QPainter, QColor, QPen
 from PyQt5.QtCore import Qt
 from rdkit import Chem
 from rdkit.Chem import Draw
+
 from opt.single_objective.comb.drug_discovery_problem.molecule_boxes import MoleculeBoxes
 from opt.single_objective.comb.drug_discovery_problem.insert_molecule import NewMoleculeForm
 from opt.single_objective.comb.drug_discovery_problem.hyper_parameters import HyperParameters

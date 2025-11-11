@@ -1,3 +1,12 @@
+import sys
+import os
+from pathlib import Path
+directory = Path(__file__).resolve()
+root_dir = directory.parent
+sys.path.append(str(root_dir))
+if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
+        sys.path.append(str(root_dir/ "lib"))
+
 from random import randint
 from random import choice
 import numpy as np
@@ -26,10 +35,10 @@ def main():
                 subsets.append({i})
 
         for i in range(m):
-            number_of_elements = randint(1, n)
-            random.shuffle(universe_list)
-            subset = set(universe_list[0:number_of_elements])
-            subsets.append(subset)
+                number_of_elements = randint(1, n)
+                random.shuffle(universe_list)
+                subset = set(universe_list[0:number_of_elements])
+                subsets.append(subset)
 
         #universe_set = {0, 1, 2, 3, 4, 5, 6}
         #universe_list = list(universe_set)
