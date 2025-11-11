@@ -3,7 +3,7 @@
 	url = https://github.com/matf-r-i/universal-optimizer-lib-python.git
 [submodule "use-cpp-lib/lib"]
 	path = use-cpp-lib/lib
-	url = https://github.com/matf-r-i/universal-optimizer-lib-python.git
+	url = https://github.com/matf-r-i/universal-optimizer-lib-cpp.git
 [submodule "use-python-lib/lib"]
 	path = use-python-lib/lib
 	url = https://github.com/matf-r-i/universal-optimizer-lib-python.git
