@@ -1,3 +1,9 @@
 [submodule "use-python-lib/universal-optimizer-lib-python"]
 	path = use-python-lib/universal-optimizer-lib-python
 	url = https://github.com/matf-r-i/universal-optimizer-lib-python.git
+[submodule "use-cpp-lib/lib"]
+	path = use-cpp-lib/lib
+	url = https://github.com/matf-r-i/universal-optimizer-lib-python.git
+[submodule "use-python-lib/lib"]
+	path = use-python-lib/lib
+	url = https://github.com/matf-r-i/universal-optimizer-lib-python.git
