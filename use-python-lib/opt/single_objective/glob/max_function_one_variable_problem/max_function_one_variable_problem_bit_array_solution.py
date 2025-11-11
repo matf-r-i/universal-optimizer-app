@@ -1,15 +1,18 @@
 
 import sys
-import math
-
+import os
 from pathlib import Path
 directory = Path(__file__).resolve()
 sys.path.append(directory)
 sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
-sys.path.append(directory.parent.parent.parent.parent.parent)
+root_dir = directory.parent.parent.parent.parent.parent
+sys.path.append(str(root_dir))
+if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
+        sys.path.append(str(root_dir/ "lib"))
 
+import math
 from random import choice
 from random import random
 from random import randint

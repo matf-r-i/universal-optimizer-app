@@ -4,15 +4,19 @@
 The :mod:`~opt.single_objective.comb.minimum_multi_cut_problem.minimum_multi_cut_problem_bit_array_solution` contains class :class:`~opt.single_objective.comb.minimum_multi_cut_problem.minimum_multi_cut_problem_bit_array_solution.MinMultiCutProblemBitArraySolution`, that represents solution of the :ref:`Problem_Minimum_Multi_Cut`, where `BitArray` representation of the problem has been used.
 """
 import sys
+import os
 from pathlib import Path
-from typing import Optional
 directory = Path(__file__).resolve()
 sys.path.append(directory)
 sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
-sys.path.append(directory.parent.parent.parent.parent.parent)
+root_dir = directory.parent.parent.parent.parent.parent
+sys.path.append(str(root_dir))
+if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
+        sys.path.append(str(root_dir/ "lib"))
 
+from typing import Optional
 from random import choice
 from random import random
 import random as rnd

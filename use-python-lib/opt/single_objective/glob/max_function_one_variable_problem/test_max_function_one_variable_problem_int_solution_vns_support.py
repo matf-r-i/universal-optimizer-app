@@ -1,7 +1,11 @@
 from pathlib import Path
-directory = Path(__file__).resolve()
 import sys
-sys.path.append(directory.parent)
+import os
+directory = Path(__file__).resolve()
+root_dir = directory.parent
+sys.path.append(str(root_dir))
+if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
+        sys.path.append(str(root_dir/ "lib"))
 
 import unittest
 import unittest.mock as mocker

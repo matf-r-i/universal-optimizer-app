@@ -2,21 +2,17 @@
 The :mod:`opt.single_objective.comb.ones_count_max_problem.solver` contains programming code that optimize :ref:`Max Ones<Problem_Ones_Count_Max>` Problem with various optimization techniques.
 """
 import sys
-
-#---------- Script should be executed from repository root folder -----------------
-#import path
-#OPTIMIZATION_ALGORITHM_DIR = './optimization-algorithms/optimization_algorithms'
-#abs_path = path.Path(OPTIMIZATION_ALGORITHM_DIR).abspath()
-#sys.path.append(abs_path)
-#--------- Previous code should be commented out when pip install started to work --
-
+import os
 from pathlib import Path
 directory = Path(__file__).resolve()
 sys.path.append(directory)
 sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
-sys.path.append(directory.parent.parent.parent.parent)
+root_dir = directory.parent.parent.parent.parent
+sys.path.append(str(root_dir))
+if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
+        sys.path.append(str(root_dir/ "lib"))
 
 from random import random, randrange
 from random import seed
