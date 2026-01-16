@@ -10,8 +10,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 root_dir = directory.parent.parent.parent
 sys.path.append(str(root_dir))
-if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
-        sys.path.append(str(root_dir/ "lib"))
 
 from random import randrange
 from random import seed
@@ -36,9 +34,9 @@ from uo.algorithm.output_control import OutputControl
 from uo.algorithm.metaheuristic.finish_control import FinishControl
 from uo.algorithm.metaheuristic.additional_statistics_control import AdditionalStatisticsControl
 
-from opt.single_objective.comb.max_ones_count_problem.max_ones_count_problem_ilp_linopy import \
+from opt.single_objective.comb.max_ones_count_problem.max_ones_count_problem_ilp_higspy import \
         MaxOnesCountProblemIntegerLinearProgrammingSolverConstructionParameters
-from opt.single_objective.comb.max_ones_count_problem.max_ones_count_problem_ilp_linopy import \
+from opt.single_objective.comb.max_ones_count_problem.max_ones_count_problem_ilp_higspy import \
     MaxOnesCountProblemIntegerLinearProgrammingSolver
 
 from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_shaking_support import \

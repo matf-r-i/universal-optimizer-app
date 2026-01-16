@@ -1,12 +1,3 @@
-import sys
-import os
-from pathlib import Path
-directory = Path(__file__).resolve()
-root_dir = directory.parent
-sys.path.append(str(root_dir))
-if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
-        sys.path.append(str(root_dir/ "lib"))
-
 from random import seed
 
 from uo.algorithm.output_control import OutputControl

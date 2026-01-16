@@ -12,8 +12,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 root_dir = directory.parent.parent.parent.parent.parent
 sys.path.append(str(root_dir))
-if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
-        sys.path.append(str(root_dir/ "lib"))
 
 from typing import NamedTuple
 

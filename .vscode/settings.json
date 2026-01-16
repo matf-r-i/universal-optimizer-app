@@ -1,0 +1,14 @@
+{
+    "python.testing.pytestArgs": [
+        "use-python-lib"
+    ],
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./use-python-lib",
+        "-p",
+        "test_*.py"
+    ]
+}

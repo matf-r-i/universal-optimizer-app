@@ -4,9 +4,6 @@ import sys
 import os
 root_dir = directory.parent
 sys.path.append(str(root_dir))
-if 'LIB_SOURCE' in os.environ and os.environ['LIB_SOURCE']=='CODE':
-        sys.path.append(str(root_dir/ "lib"))
-
 
 import unittest   
 import unittest.mock as mocker
