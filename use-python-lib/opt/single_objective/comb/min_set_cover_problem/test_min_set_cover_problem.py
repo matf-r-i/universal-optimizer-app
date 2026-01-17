@@ -79,7 +79,7 @@ class TestMinSetCoverProblem(unittest.TestCase):
         # Assert
         self.assertEqual(problem.dimension, len(problem.subsets))
 
-    # Attempting to copy an instance of MaxOnesCountProblem creates a new instance with the same properties, but which is not the same object
+    # Attempting to copy an instance of OnesCountMaxProblem creates a new instance with the same properties, but which is not the same object
     def test_copy_creates_new_instance_with_same_properties_but_not_same_object(self):
         # Arrange
         universe = {1, 2, 3, 4, 5, 6}

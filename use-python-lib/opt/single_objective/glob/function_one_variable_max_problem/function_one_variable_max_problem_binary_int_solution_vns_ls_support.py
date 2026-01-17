@@ -40,6 +40,9 @@ class FunctionOneVariableMaxProblemBinaryIntSolutionVnsLsSupport(VnsLocalSearchS
 
     def copy(self):
         return self.__copy__()
+    
+    def copy_from(self, original: VnsLocalSearchSupport) -> None:
+        super().copy_from(original)
         
     def local_search_best_improvement(self, k:int, problem:FunctionOneVariableMaxProblemMax, 
             solution:FunctionOneVariableMaxProblemBinaryIntSolution, 

@@ -148,7 +148,7 @@ b. Contribution in solving **combinatorial** optimization problems:
 
     b.1. Ones Count Max Problem :ref:`Problem_Ones_Count_Max`:
 
-        1. Representation of the problem (in class :class:`~opt.single_objective.comb.ones_count_max.MaxOnesCountProblem`) and solution (`BitArray`-based in class :class:`~opt.single_objective.comb.ones_count_max.MaxOnesCountProblemBitArraySolution` and `int`-based in class :class:`~opt.single_objective.comb.ones_count_max.MaxOnesCountProblemIntSolution`) - [VladimirFilipovic]_
+        1. Representation of the problem (in class :class:`~opt.single_objective.comb.ones_count_max.OnesCountMaxProblem`) and solution (`BitArray`-based in class :class:`~opt.single_objective.comb.ones_count_max.OnesCountMaxProblemBitArraySolution` and `int`-based in class :class:`~opt.single_objective.comb.ones_count_max.OnesCountMaxProblemIntSolution`) - [VladimirFilipovic]_
         
         2. Integer Linear Programming method (using `linopy` library) - [VladimirFilipovic]_  
 

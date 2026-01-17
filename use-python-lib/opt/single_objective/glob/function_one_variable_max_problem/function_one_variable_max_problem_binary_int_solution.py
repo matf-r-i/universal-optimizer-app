@@ -60,6 +60,9 @@ class FunctionOneVariableMaxProblemBinaryIntSolution(Solution[int,float]):
 
     def copy(self):
         return self.__copy__()
+    
+    def copy_from(self, original: VnsLocalSearchSupport) -> None:
+        super().copy_from(original)    
         
     @property
     def domain_from(self)->float:
