@@ -27,12 +27,13 @@ from uo.utils.complex_counter_uniform_ascending import ComplexCounterUniformAsce
 
 from uo.solution.quality_of_solution import QualityOfSolution
 from uo.algorithm.algorithm import Algorithm
-from uo.algorithm.metaheuristic.variable_neighborhood_search.problem_solution_vns_support import ProblemSolutionVnsSupport
+from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_ls_support import VnsLocalSearchSupport
+from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_shaking_support import VnsShakingSupport
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_int_solution import OnesCountMaxProblemBinaryIntSolution
 
-class OnesCountMaxProblemBinaryIntSolutionVnsSupport(ProblemSolutionVnsSupport[int,str]):
+class OnesCountMaxProblemBinaryIntSolutionVnsSupport(VnsLocalSearchSupport[int,str], VnsShakingSupport[int,str]):
     
     def __init__(self)->None:
         """

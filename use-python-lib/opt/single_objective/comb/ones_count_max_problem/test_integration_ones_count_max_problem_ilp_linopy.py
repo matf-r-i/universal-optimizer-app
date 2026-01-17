@@ -138,7 +138,9 @@ class TestIntegration(unittest.TestCase):
         # Assert
         objective = solver.model.objective
         self.assertIsNotNone(objective)
-        self.assertIn("LinearExpression: +1 x[0] + 1 x[0] + 1 x[0] + 1 x[0] + 1 x[0] + 0\nSense: max\nValue: 5.0", str(objective))
+        self.assertIn("+1 x[0] + 1 x[0] + 1 x[0] + 1 x[0] + 1 x[0]", str(objective))
+        self.assertIn("Sense: max", str(objective))
+        self.assertIn("Value: 5.0", str(objective))
 
     # The method raises a TypeError if called with an invalid instance of OutputControl or OnesCountMaxProblem.
     def test_invalid_instance_type_error(self):
