@@ -21,7 +21,7 @@ from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_optimizer impor
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_int_solution import OnesCountMaxProblemBinaryIntSolution
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_int_solution_vns_support import OnesCountMaxProblemBinaryIntSolutionVnsSupport
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_int_solution_vns_shaking_support import OnesCountMaxProblemBinaryIntSolutionVnsSupport
 
 class TestOnesCountMaxProblemVnsBinaryIntSolutionLsbi(unittest.TestCase):
     
@@ -30,7 +30,7 @@ class TestOnesCountMaxProblemVnsBinaryIntSolutionLsbi(unittest.TestCase):
         print("setUpClass TestIntegrationOnesCountMaxProblemVnsBinaryIntSolutionLsbi\n")
 
     def setUp(self):
-        self.output_control = OutputControl(False)
+        self.output_control = OutputControl()
         self.problem_to_solve:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=22)
         self.solution:OnesCountMaxProblemBinaryIntSolution = OnesCountMaxProblemBinaryIntSolution()
         self.finish_control:FinishControl = FinishControl(criteria='evaluations', evaluations_max=1000)

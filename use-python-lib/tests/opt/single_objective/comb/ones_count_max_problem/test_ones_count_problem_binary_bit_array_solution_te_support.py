@@ -19,8 +19,8 @@ class TestOnesCountMaxProblemBinaryBitArraySolutionTeSupport(unittest.TestCase):
         problem = OnesCountMaxProblem(dim=len(result))
         solution = OnesCountMaxProblemBinaryBitArraySolution()
         solution.init_from(BitArray(bin=result), problem)
-        output_control = OutputControl(write_to_output=False)
-        optimizer = AlgorithmVoid("test", output_control, problem)
+        output_control = OutputControl()
+        optimizer = AlgorithmVoid(name="test", output_control=output_control, problem=problem)
         te_support = OnesCountMaxProblemBinaryBitArraySolutionTeSupport()
     
         te_support.reset(problem, solution, optimizer)
@@ -35,8 +35,8 @@ class TestOnesCountMaxProblemBinaryBitArraySolutionTeSupport(unittest.TestCase):
         problem = OnesCountMaxProblem(dim=len(result))
         solution = OnesCountMaxProblemBinaryBitArraySolution()
         solution.init_from(BitArray(bin=result), problem)
-        output_control = OutputControl(write_to_output=False)
-        optimizer = AlgorithmVoid("test", output_control, problem)
+        output_control = OutputControl()
+        optimizer = AlgorithmVoid(name="test", output_control=output_control, problem=problem)
         te_support = OnesCountMaxProblemBinaryBitArraySolutionTeSupport()
     
         te_support.reset(problem, solution, optimizer)
@@ -52,8 +52,8 @@ class TestOnesCountMaxProblemBinaryBitArraySolutionTeSupport(unittest.TestCase):
         problem = OnesCountMaxProblem(dim=len(result))
         solution = OnesCountMaxProblemBinaryBitArraySolution()
         solution.init_from(BitArray(bin=result), problem)
-        output_control = OutputControl(write_to_output=False)
-        optimizer = AlgorithmVoid("test", output_control, problem)
+        output_control = OutputControl()
+        optimizer = AlgorithmVoid(name="test", output_control=output_control, problem=problem)
         te_support = OnesCountMaxProblemBinaryBitArraySolutionTeSupport()
     
         te_support.reset(problem, solution, optimizer)

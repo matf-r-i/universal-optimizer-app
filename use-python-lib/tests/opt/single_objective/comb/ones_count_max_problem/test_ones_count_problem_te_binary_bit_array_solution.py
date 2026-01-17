@@ -35,7 +35,7 @@ class TestOnesCountMaxProblemTeBinaryBitArraySolution(unittest.TestCase):
         print("setUpClass TestIntegrationOnesCountMaxProblemTeBinaryBitArraySolution\n")
 
     def setUp(self):
-        self.output_control = OutputControl(False)
+        self.output_control = OutputControl()
         self.problem_to_solve:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=12)
         self.solution:OnesCountMaxProblemBinaryBitArraySolution = OnesCountMaxProblemBinaryBitArraySolution(random_seed=43434343)
         self.te_support:OnesCountMaxProblemBinaryBitArraySolutionTeSupport = OnesCountMaxProblemBinaryBitArraySolutionTeSupport()

@@ -31,80 +31,37 @@ from uo.utils.complex_counter_uniform_ascending import ComplexCounterUniformAsce
 from uo.solution.quality_of_solution import QualityOfSolution
 from uo.algorithm.algorithm import Algorithm
 from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_ls_support import VnsLocalSearchSupport
-from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_shaking_support import VnsShakingSupport
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_bit_array_solution import OnesCountMaxProblemBinaryBitArraySolution
 
-class OnesCountMaxProblemBinaryBitArraySolutionVnsSupport(VnsLocalSearchSupport[BitArray,str], VnsShakingSupport[BitArray,str]):
+class OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI(VnsLocalSearchSupport[BitArray,str]):
     
     def __init__(self)->None:
         """
-        Create new `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport` instance
+        Create new `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI` instance
         """
 
     def __copy__(self):
         """
-        Internal copy of the `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport`
+        Internal copy of the `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI`
 
-        :return: new `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport` instance with the same properties
-        :rtype: `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport`
+        :return: new `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI` instance with the same properties
+        :rtype: `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI`
         """
         sol = deepcopy(self)
         return sol
 
     def copy(self):
         """
-        Copy the `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport` instance
+        Copy the `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI` instance
 
-        :return: new `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport` instance with the same properties
-        :rtype: `OnesCountMaxProblemBinaryBitArraySolutionVnsSupport`
+        :return: new `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI` instance with the same properties
+        :rtype: `OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI`
         """
         return self.__copy__()
 
-    def shaking(self, k:int, problem:OnesCountMaxProblem, solution:OnesCountMaxProblemBinaryBitArraySolution, 
-            optimizer:Algorithm)->bool:
-        """
-        Random shaking of k parts such that new solution code does not differ more than k from all solution codes 
-        inside shakingPoints 
-
-        :param int k: int parameter for VNS
-        :param `OnesCountMaxProblem` problem: problem that is solved
-        :param `OnesCountMaxProblemBinaryBitArraySolution` solution: solution used for the problem that is solved
-        :param `Algorithm` optimizer: optimizer that is executed
-        :return: if randomization is successful
-        :rtype: bool
-        """    
-        if optimizer.finish_control.is_finished(optimizer.evaluation, optimizer.iteration, optimizer.elapsed_seconds()):
-            return False
-        tries:int = 0
-        limit:int = 10000
-        while tries < limit:
-            repres:BitArray = BitArray(solution.representation)
-            positions:list[int] = []
-            for _ in range(0,k):
-                positions.append(choice(range(len(repres))))
-            for pos in positions:
-                repres.invert(pos)
-            solution.representation = repres
-            all_ok:bool = True
-            if solution.representation.count(value=1) > problem.dimension:
-                all_ok = False
-            if all_ok:
-                break
-        if tries < limit:
-            if optimizer.finish_control.is_finished(optimizer.evaluation, optimizer.iteration, optimizer.elapsed_seconds()):
-                return False
-            optimizer.write_output_values_if_needed("before_evaluation", "b_e")
-            optimizer.evaluation += 1
-            solution.evaluate(problem)
-            optimizer.write_output_values_if_needed("after_evaluation", "a_e")
-            optimizer.write_output_values_if_needed("after_step_in_iteration", "shaking")
-            return True
-        else:
-            return False 
-
-    def local_search_best_improvement(self, k:int, problem:OnesCountMaxProblem, solution:OnesCountMaxProblemBinaryBitArraySolution, 
+    def local_search(self, k:int, problem:OnesCountMaxProblem, solution:OnesCountMaxProblemBinaryBitArraySolution, 
             optimizer: Algorithm)->bool:
         """
         Executes "best improvement" variant of the local search procedure 
@@ -150,45 +107,6 @@ class OnesCountMaxProblemBinaryBitArraySolutionVnsSupport(VnsLocalSearchSupport[
         solution.copy_from(start_sol)
         return False
     
-    def local_search_first_improvement(self, k:int, problem:OnesCountMaxProblem, solution:OnesCountMaxProblemBinaryBitArraySolution, 
-            optimizer: Algorithm)->bool:
-        """
-        Executes "first improvement" variant of the local search procedure 
-        
-        :param int k: int parameter for VNS
-        :param `OnesCountMaxProblem` problem: problem that is solved
-        :param `OnesCountMaxProblemBinaryBitArraySolution` solution: solution used for the problem that is solved
-        :param `Algorithm` optimizer: optimizer that is executed
-        :return: result of the local search procedure 
-        :rtype: if local search is successful
-        """
-        if optimizer.finish_control.is_finished(optimizer.evaluation, optimizer.iteration, optimizer.elapsed_seconds()):
-            return False
-        if k < 1 or k > problem.dimension:
-            return False
-        start_sol:OnesCountMaxProblemBinaryBitArraySolution = solution.copy()
-        # initialize indexes
-        indexes:ComplexCounterUniformAscending = ComplexCounterUniformAscending(k, problem.dimension)
-        in_loop:bool = indexes.reset()
-        while in_loop:
-            # collect positions for inversion from indexes
-            positions:list[int] = indexes.current_state()
-            # invert and compare, switch and exit if new is better
-            solution.representation.invert(positions) 
-            if optimizer.finish_control.is_finished(optimizer.evaluation, optimizer.iteration, optimizer.elapsed_seconds()):
-                solution.copy_from(start_sol)
-                return False
-            optimizer.write_output_values_if_needed("before_evaluation", "b_e")
-            optimizer.evaluation += 1
-            solution.evaluate(problem)
-            optimizer.write_output_values_if_needed("after_evaluation", "a_e")
-            if optimizer.is_first_better(solution, start_sol, problem):
-                return True
-            solution.representation.invert(positions)
-            # increment indexes and set in_loop accordingly
-            in_loop = indexes.progress()
-        solution.copy_from(start_sol)
-        return False
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 
         group_end:str ='}')->str:
@@ -208,7 +126,7 @@ class OnesCountMaxProblemBinaryBitArraySolutionVnsSupport(VnsLocalSearchSupport[
         :return: string representation of vns support instance
         :rtype: str
         """        
-        return 'OnesCountMaxProblemBinaryBitArraySolutionVnsSupport'
+        return 'OnesCountMaxProblemBinaryBitArraySolutionVnsLocalSearchSupportBI'
 
     def __str__(self)->str:
         """

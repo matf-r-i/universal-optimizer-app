@@ -50,7 +50,7 @@ class TestMaxFunctionOneVariableMaxProblemBinaryIntSolutionLsfi(unittest.TestCas
 
     def setUp(self):
         # Arrange
-        self.output_control: OutputControl = OutputControl(write_to_output=False)
+        self.output_control: OutputControl = OutputControl()
         self.problem_to_solve: FunctionOneVariableMaxProblemMax = (
             FunctionOneVariableMaxProblemMax(
                 expression="7-x*x", domain_low=-3, domain_high=3
@@ -84,7 +84,7 @@ class TestMaxFunctionOneVariableMaxProblemBinaryIntSolutionLsfi(unittest.TestCas
         self.vns_construction_params.output_control = self.output_control
         self.vns_construction_params.problem = self.problem_to_solve
         self.vns_construction_params.solution_template = self.solution
-        self.vns_construction_params.problem_solution_vns_support = self.vns_support
+        self.vns_construction_params.problem_solution_vns_support = self.vns_ls_support
         self.vns_construction_params.finish_control = self.finish_control
         self.vns_construction_params.random_seed = 43434343
         self.vns_construction_params.additional_statistics_control = (

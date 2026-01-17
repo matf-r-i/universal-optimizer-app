@@ -9,8 +9,9 @@ sys.path.append(str(root_dir))
 
 from opt_so_comb_ones_count_max_vns_int_exec_build import (
     OnesCountMaxProblem2,
-    OnesCountMaxProblemBinaryIntSolution,
-    OnesCountMaxProblemBinaryIntSolutionVnsSupport
+    OnesCountMaxProblemIntSolution,
+    OnesCountMaxProblemIntSolutionVnsLocalSearchSupport,
+    OnesCountMaxProblemIntSolutionVnsShakingSupport
 )
 
 class TestOnesCountMaxProblem2(unittest.TestCase):
@@ -31,7 +32,7 @@ class TestOnesCountMaxProblem2(unittest.TestCase):
 class TestOnesCountMaxProblemBinaryIntSolution(unittest.TestCase):
     def setUp(self):
         self.problem = OnesCountMaxProblem2(5)
-        self.solution = OnesCountMaxProblemBinaryIntSolution()
+        self.solution = OnesCountMaxProblemIntSolution()
 
     def test_init_random(self):
         self.solution.init_random(self.problem)
@@ -59,7 +60,7 @@ class TestOnesCountMaxProblemBinaryIntSolution(unittest.TestCase):
 class TestOnesCountMaxProblemBinaryIntSolutionVnsSupport(unittest.TestCase):
     def setUp(self):
         self.problem = OnesCountMaxProblem2(5)
-        self.solution = OnesCountMaxProblemBinaryIntSolution()
+        self.solution = OnesCountMaxProblemIntSolution()
         self.solution.init_random(self.problem)
         self.optimizer = type('DummyOptimizer', (), {
             'finish_control': type('DummyFinish', (), {'is_finished': lambda *a, **kw: False})(),
@@ -68,18 +69,19 @@ class TestOnesCountMaxProblemBinaryIntSolutionVnsSupport(unittest.TestCase):
             'elapsed_seconds': lambda self=None: 0,
             'is_first_better': lambda self, s1, s2, p: True
         })()
-        self.vns_support = OnesCountMaxProblemBinaryIntSolutionVnsSupport()
+        self.vns_ls_support = OnesCountMaxProblemIntSolutionVnsLocalSearchSupport()
+        self.vns_shaking_support = OnesCountMaxProblemIntSolutionVnsShakingSupport()
 
     def test_shaking(self):
-        result = self.vns_support.shaking(1, self.problem, self.solution, self.optimizer)
+        result = self.vns_shaking_support.shaking(1, self.problem, self.solution, self.optimizer)
         self.assertTrue(result)
 
     def test_local_search_best_improvement(self):
-        result = self.vns_support.local_search_best_improvement(1, self.problem, self.solution, self.optimizer)
+        result = self.vns_ls_support.local_search_best_improvement(1, self.problem, self.solution, self.optimizer)
         self.assertTrue(result)
 
     def test_local_search_first_improvement(self):
-        result = self.vns_support.local_search_first_improvement(1, self.problem, self.solution, self.optimizer)
+        result = self.vns_ls_support.local_search_first_improvement(1, self.problem, self.solution, self.optimizer)
         self.assertTrue(result)
 
 if __name__ == '__main__':

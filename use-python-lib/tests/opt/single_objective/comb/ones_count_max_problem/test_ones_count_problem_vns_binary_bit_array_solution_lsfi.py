@@ -29,7 +29,7 @@ from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_optimizer impor
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_bit_array_solution import OnesCountMaxProblemBinaryBitArraySolution
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_bit_array_solution_vns_support import OnesCountMaxProblemBinaryBitArraySolutionVnsSupport
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_bit_array_solution_vns_shaking_support import OnesCountMaxProblemBinaryBitArraySolutionVnsSupport
 
 class TestOnesCountMaxProblemVnsBinaryBitArraySolutionLsbi(unittest.TestCase):
     
@@ -38,7 +38,7 @@ class TestOnesCountMaxProblemVnsBinaryBitArraySolutionLsbi(unittest.TestCase):
         print("setUpClass TestIntegrationOnesCountMaxProblemVnsBinaryBitArraySolutionLsbi\n")
 
     def setUp(self):
-        self.output_control = OutputControl(False)
+        self.output_control = OutputControl()
         self.problem_to_solve:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=24)
         self.solution:OnesCountMaxProblemBinaryBitArraySolution = OnesCountMaxProblemBinaryBitArraySolution(random_seed=43434343)
         self.finish_control:FinishControl = FinishControl(criteria='evaluations', evaluations_max=1000)
