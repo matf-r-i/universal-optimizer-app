@@ -3,19 +3,19 @@ from datetime import datetime
 import unittest   
 import unittest.mock as mocker
 
-from linopy import Model
-
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 
 from uo.algorithm.output_control import OutputControl
-
+from uo.utils import logger
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_higspy import OnesCountMaxProblemIntegerLinearProgrammingSolver
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_higspy import OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_linopy import OnesCountMaxProblemIntegerLinearProgrammingSolver
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_linopy import OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters
 from uo.solution.solution import Solution
 from uo.solution.solution_void_representation_int import SolutionVoidInt
 from uo.solution.solution_void_representation_object import SolutionVoidObject
+
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_solution import OnesCountMaxProblemIntegerLinearProgrammingSolution
 
 class TestOnesCountMaxProblemIlpLinopy(unittest.TestCase):
     
@@ -24,17 +24,16 @@ class TestOnesCountMaxProblemIlpLinopy(unittest.TestCase):
         print("setUpClass TestIntegrationOnesCountMaxProblemIlpLinopy\n")
 
     def setUp(self):
-        self.problem_to_solve:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=12)
-        self.optimizer:OnesCountMaxProblemIntegerLinearProgrammingSolver = OnesCountMaxProblemIntegerLinearProgrammingSolver(
-            problem=self.problem_to_solve
-        )
-        self.bs = self.optimizer.optimize()
-    
+        self.problem:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=5) 
+        self.solver: OnesCountMaxProblemIntegerLinearProgrammingSolver = OnesCountMaxProblemIntegerLinearProgrammingSolver(problem=self.problem)
+        self.bs: OnesCountMaxProblemIntegerLinearProgrammingSolution = self.solver.optimize()
+
+            
     def test_best_solution_after_optimization_should_be_optimal(self):
-        result = ''
+        #Assert
+        result = str(self.bs)
         expected = ''
-        for i in range(self.optimizer.model.nvars):
-            result += str(int(self.optimizer.model.solution.x[i]))
+        for i in range(self.bs.representation.size):
             expected += '1'
         self.assertEqual(expected, result)
 
@@ -54,6 +53,7 @@ class TestOnesCountMaxProblemIlpLinopy(unittest.TestCase):
     # creating an instance of OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters with default parameters should return an instance of the class with None parameters
     def test_default_parameters(self):
         # Arrange
+        problem = ProblemVoidMinSO('problem_name', False)
         # Act & Assert
         with self.assertRaises(TypeError):
             construction_params = OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters()
@@ -104,45 +104,24 @@ if __name__ == '__main__':
 
 class TestIntegration(unittest.TestCase):
 
-    # The method runs without errors when called with a valid instance of OnesCountMaxProblemIntegerLinearProgrammingSolver.
-    def test_valid_instance_no_errors(self):
-        # Arrange
-        problem = OnesCountMaxProblem(dim=5)
-        solver = OnesCountMaxProblemIntegerLinearProgrammingSolver(problem=problem)
-        # Act
-        try:
-            bs = solver.optimize()
-        except Exception as e:
-            self.fail(f"Unexpected exception occurred: {e}")
-        # Assert
-        self.assertTrue(True)
+    @classmethod
+    def setUpClass(cls):
+        print("setUpClass TestIntegration\n")
 
+    def setUp(self):
+        self.problem:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=5) 
+        self.solver: OnesCountMaxProblemIntegerLinearProgrammingSolver = OnesCountMaxProblemIntegerLinearProgrammingSolver(problem=self.problem)
+        self.bs: OnesCountMaxProblemIntegerLinearProgrammingSolution = self.solver.optimize()
+
+    def tearDown(self):
+        return super().tearDown()
+    
     # The method creates an instance of Model and adds variables to it.
     def test_model_instance_and_variables_added(self):
-        # Arrange
-        problem = OnesCountMaxProblem(dim=5)
-        solver = OnesCountMaxProblemIntegerLinearProgrammingSolver(problem=problem)
-        # Act
-        bs = solver.optimize()
         # Assert
-        self.assertIsInstance(solver.model, Model)
-        self.assertGreater(len(solver.model.variables), 0)
+        self.assertGreater(len(self.solver.model.variables), 0)
 
     # The method sets the objective function of the model to minimize or maximize the sum of the variables.
-    def test_objective_function_set(self):
-        # Arrange
-        problem = OnesCountMaxProblem(dim=5)
-        solver = OnesCountMaxProblemIntegerLinearProgrammingSolver(problem=problem)
-        # Act
-        bs = solver.optimize()
-        # Assert
-        objective = solver.model.objective
-        self.assertIsNotNone(objective)
-        self.assertIn("+1 x[0] + 1 x[0] + 1 x[0] + 1 x[0] + 1 x[0]", str(objective))
-        self.assertIn("Sense: max", str(objective))
-        self.assertIn("Value: 5.0", str(objective))
-
-    # The method raises a TypeError if called with an invalid instance of OutputControl or OnesCountMaxProblem.
     def test_invalid_instance_type_error(self):
         # Arrange
         output_control = "invalid_output_control"

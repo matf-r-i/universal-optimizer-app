@@ -63,13 +63,16 @@ class TestOnesCountMaxProblemBinaryIntSolutionVnsSupport(unittest.TestCase):
         self.solution = OnesCountMaxProblemIntSolution()
         self.solution.init_random(self.problem)
         self.optimizer = type('DummyOptimizer', (), {
-            'finish_control': type('DummyFinish', (), {'is_finished': lambda *a, **kw: False})(),
+            'finish_control': type('DummyFinish', (), 
+                                   {'is_finished': lambda *a, **kw: False,
+                                     'should_finish': lambda *a, **kw: False})(),
             'evaluation': 0,
             'iteration': 0,
             'elapsed_seconds': lambda self=None: 0,
             'is_first_better': lambda self, s1, s2, p: True
         })()
-        self.vns_ls_support = OnesCountMaxProblemIntSolutionVnsLocalSearchSupport()
+        self.vns_ls_support_bi = OnesCountMaxProblemIntSolutionVnsLocalSearchSupport()
+        self.vns_ls_support_fi = OnesCountMaxProblemIntSolutionVnsLocalSearchSupport()
         self.vns_shaking_support = OnesCountMaxProblemIntSolutionVnsShakingSupport()
 
     def test_shaking(self):

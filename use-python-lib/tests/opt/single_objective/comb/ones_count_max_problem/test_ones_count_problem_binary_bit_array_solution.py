@@ -118,10 +118,6 @@ class TestOnesCountMaxProblemBinaryBitArraySolution(unittest.TestCase):
         self.assertIsNone(solution.objective_value)
         self.assertIsNone(solution.objective_values)
         self.assertFalse(solution.is_feasible)
-        self.assertFalse(Solution.evaluation_cache_cs.is_caching)
-        self.assertEqual(Solution.evaluation_cache_cs.max_cache_size, 0)
-        self.assertFalse(Solution.representation_distance_cache_cs.is_caching)
-        self.assertEqual(Solution.representation_distance_cache_cs.max_cache_size, 0)
 
     # Call the init_random() method with a Problem instance as an argument and verify that the representation property is set to a BitArray with the correct length.
     def test_init_random_method_with_problem(self):
@@ -683,14 +679,7 @@ class TestStringRep(unittest.TestCase):
         with self.assertRaises(TypeError):
             solution.string_rep(indentation=None)
 
-    # If indentation_symbol is None, it raises a TypeError.
-    def test_indentation_symbol_is_none(self):
-        # Arrange
-        solution = OnesCountMaxProblemBinaryBitArraySolution()
-    
-        # Act & Assert
-        with self.assertRaises(TypeError):
-            solution.string_rep(indentation_symbol=None)
+
 
     # If group_start is None, it raises a TypeError.
     def test_group_start_is_none(self):

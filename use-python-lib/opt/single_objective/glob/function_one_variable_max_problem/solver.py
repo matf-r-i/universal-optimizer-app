@@ -36,7 +36,7 @@ from opt.single_objective.glob.function_one_variable_max_problem.command_line im
 from opt.single_objective.glob.function_one_variable_max_problem.command_line import parse_arguments
 
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import \
-        FunctionOneVariableMaxProblemMax
+        FunctionOneVariableMaxProblem
 
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem_binary_int_solution \
         import FunctionOneVariableMaxProblemBinaryIntSolution
@@ -158,7 +158,7 @@ def main():
                 keep=additional_statistics_keep, 
                 max_local_optima_count=max_local_optima_count)
         # problem to be solved
-        problem = FunctionOneVariableMaxProblemMax.from_input_file(input_file_path=input_file_path,
+        problem = FunctionOneVariableMaxProblem.from_input_file(input_file_path=input_file_path,
                 input_format=input_format)
         start_time = datetime.now()
         if write_to_output_file:

@@ -44,7 +44,7 @@ from uo.algorithm.metaheuristic.variable_neighborhood_search.problem_solution_vn
         ProblemSolutionVnsSupport
 
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import \
-        FunctionOneVariableMaxProblemMax
+        FunctionOneVariableMaxProblem
 
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem_binary_int_solution \
         import FunctionOneVariableMaxProblemBinaryIntSolution

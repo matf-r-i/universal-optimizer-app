@@ -4,9 +4,9 @@ from unittest.mock import patch
 from unittest.mock import mock_open
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_higspy import OnesCountMaxProblemIntegerLinearProgrammingSolution
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_higspy import OnesCountMaxProblemIntegerLinearProgrammingSolver
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_higspy import OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_linopy import OnesCountMaxProblemIntegerLinearProgrammingSolution
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_linopy import OnesCountMaxProblemIntegerLinearProgrammingSolver
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_linopy import OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters
 from uo.problem.problem import Problem
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 from uo.solution.solution import Solution
@@ -18,8 +18,9 @@ class TestOnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameter
     def test_default_parameters_no_exceptions(self):
         # Arrange
         # Act
-        params = OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters(output_control=None,
-                                        problem=ProblemVoidMinSO("a", True))
+        params = OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters(
+            output_control=OutputControl(),
+            problem=ProblemVoidMinSO("a", True))
         # Assert
         self.assertIsInstance(params, OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters)
 
@@ -28,8 +29,7 @@ class TestOnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameter
         # Arrange
         problem = OnesCountMaxProblem(dim=3)
         # Act
-        params = OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters(output_control=None, 
-                                        problem=problem)
+        params = OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters(output_control=OutputControl(), problem=problem)
         # Assert
         self.assertIsInstance(params, OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters)
 

@@ -53,7 +53,7 @@ class OnesCountMaxProblemBinaryBitArraySolution(Solution[BitArray,str]):
         :return: new `OnesCountMaxProblemBinaryBitArraySolution` instance with the same properties
         :rtype: OnesCountMaxProblemBinaryBitArraySolution
         """
-        sol = super().__copy__()
+        sol = deepcopy(self)
         if self.representation is not None:
             sol.representation = BitArray(bin=self.representation.bin)
         else:

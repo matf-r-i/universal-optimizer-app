@@ -23,10 +23,10 @@ from bitstring import Bits, BitArray, BitStream, pack
 from uo.algorithm.output_control import OutputControl
 from uo.algorithm.exact.total_enumeration.te_optimizer import TeOptimizerConstructionParameters
 from uo.algorithm.exact.total_enumeration.te_optimizer import TeOptimizer
+from uo.algorithm.exact.total_enumeration.te_operations_support_bit_array import TeOperationsSupportBitArray
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_bit_array_solution import OnesCountMaxProblemBinaryBitArraySolution
-from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_binary_bit_array_solution_te_support import OnesCountMaxProblemBinaryBitArraySolutionTeSupport
 
 class TestOnesCountMaxProblemTeBinaryBitArraySolution(unittest.TestCase):
     
@@ -36,14 +36,15 @@ class TestOnesCountMaxProblemTeBinaryBitArraySolution(unittest.TestCase):
 
     def setUp(self):
         self.output_control = OutputControl()
-        self.problem_to_solve:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=12)
+        dimension:int=12
+        self.problem_to_solve:OnesCountMaxProblem = OnesCountMaxProblem.from_dimension(dimension=dimension)
         self.solution:OnesCountMaxProblemBinaryBitArraySolution = OnesCountMaxProblemBinaryBitArraySolution(random_seed=43434343)
-        self.te_support:OnesCountMaxProblemBinaryBitArraySolutionTeSupport = OnesCountMaxProblemBinaryBitArraySolutionTeSupport()
+        self.te_support:TeOperationsSupportBitArray[int] = TeOperationsSupportBitArray[int]()
         construction_params:TeOptimizerConstructionParameters = TeOptimizerConstructionParameters()
         construction_params.output_control = self.output_control
         construction_params.problem = self.problem_to_solve
         construction_params.solution_template = self.solution
-        construction_params.problem_solution_te_support = self.te_support
+        construction_params.te_operations_support = self.te_support
         self.optimizer:TeOptimizer = TeOptimizer.from_construction_tuple(construction_params)
         self.bs = self.optimizer.optimize()
 

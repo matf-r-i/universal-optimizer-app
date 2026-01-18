@@ -8,8 +8,8 @@ import unittest.mock as mocker
 from unittest.mock import patch
 from unittest.mock import mock_open
 
-from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import FunctionOneVariableMaxProblemMax
-from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import FunctionOneVariableMaxProblemMaxElements
+from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import FunctionOneVariableMaxProblem
+from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import FunctionOneVariableMaxProblemElements
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem_binary_int_solution import FunctionOneVariableMaxProblemBinaryIntSolution
 
 from uo.solution.solution import Solution
@@ -38,10 +38,6 @@ class TestFunctionOneVariableMaxProblemBinaryIntSolution(unittest.TestCase):
         self.assertIsNone(solution.objective_value)
         self.assertIsNone(solution.objective_values)
         self.assertFalse(solution.is_feasible)
-        self.assertFalse(Solution.evaluation_cache_cs.is_caching)
-        self.assertEqual(Solution.evaluation_cache_cs.max_cache_size, 0)
-        self.assertFalse(Solution.representation_distance_cache_cs.is_caching)
-        self.assertEqual(Solution.representation_distance_cache_cs.max_cache_size, 0)
 
     # Calling copy() method on an instance of FunctionOneVariableMaxProblemBinaryIntSolution should return a deep copy of the object
     def test_copy_method(self):
@@ -242,7 +238,7 @@ class Test__ObtainFeasibleHelper__(unittest.TestCase):
     # If the representation is within the range of [0, number_of_intervals], the representation should not be changed.
     def test_representation_within_range(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         # Act
         solution.representation = 3
@@ -253,7 +249,7 @@ class Test__ObtainFeasibleHelper__(unittest.TestCase):
     # If the representation is equal to number_of_intervals, the representation should be set to number_of_intervals.
     def test_representation_equal_to_number_of_intervals(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         # Act
         solution.representation = 5
@@ -264,7 +260,7 @@ class Test__ObtainFeasibleHelper__(unittest.TestCase):
     # If the representation is negative, the representation should be set to 0.
     def test_representation_negative(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         # Act
         solution.representation = -2
@@ -277,7 +273,7 @@ class TestInitRandom(unittest.TestCase):
     # When called, 'init_random' should set the 'representation' attribute of the 'FunctionOneVariableMaxProblemBinaryIntSolution' instance to a random integer between 0 and 'number_of_intervals'
     def test_set_representation_to_random_integer(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         # Act
         solution.init_random(problem)
@@ -288,7 +284,7 @@ class TestInitRandom(unittest.TestCase):
 
     # If the 'representation' attribute is already set, calling 'init_random' should overwrite it with a new random integer between 0 and 'number_of_intervals'
     def test_overwrite_representation_with_random_integer(self):
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         solution.representation = 3
         solution.init_random(problem)
@@ -303,7 +299,7 @@ class TestCalculateQualityDirectly(unittest.TestCase):
     # Returns a QualityOfSolution object with the correct fitness value when given a valid representation and problem.
     def test_valid_representation_and_problem(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         representation = 3
         expected_fitness_value = (0 + 3*((10-0)/5)) ** 2
@@ -317,7 +313,7 @@ class TestCalculateQualityDirectly(unittest.TestCase):
     # Returns a QualityOfSolution object with the is_feasible attribute set to True when given a valid representation and problem.
     def test_valid_representation_and_problem_is_feasible(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         representation = 3
 
@@ -330,7 +326,7 @@ class TestCalculateQualityDirectly(unittest.TestCase):
     # Returns a QualityOfSolution object with the correct objective value when given a valid representation and problem.
     def test_valid_representation_and_problem_objective_value(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         representation = 3
         expected_objective_value = 6.0
@@ -345,7 +341,7 @@ class TestCalculateQualityDirectly(unittest.TestCase):
     # Returns a QualityOfSolution object with the correct fitness value when given the minimum valid representation and problem.
     def test_minimum_valid_representation_and_problem(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**2", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**2", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         representation = 0
         expected_fitness_value = 0.0
@@ -359,7 +355,7 @@ class TestCalculateQualityDirectly(unittest.TestCase):
     # Returns a QualityOfSolution object with the correct fitness value when given the maximum valid representation and problem.
     def test_maximum_valid_representation_and_problem(self):
         # Arrange
-        problem = FunctionOneVariableMaxProblemMax("x**3", 0, 10)
+        problem = FunctionOneVariableMaxProblem("x**3", 0, 10)
         solution = FunctionOneVariableMaxProblemBinaryIntSolution(0, 10, 5)
         representation = 5
         expected_fitness_value =  (0 + 5*((10-0)/5)) ** 3

@@ -1,3 +1,6 @@
+import typing
+from typing import Optional
+
 import sys
 import os
 from pathlib import Path
@@ -29,6 +32,7 @@ from uo.algorithm.optimizer import Optimizer
 from uo.algorithm.output_control import OutputControl
 
 from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem import OnesCountMaxProblem
+from opt.single_objective.comb.ones_count_max_problem.ones_count_max_problem_ilp_solution import OnesCountMaxProblemIntegerLinearProgrammingSolution
 
 class OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters:
     """
@@ -63,31 +67,22 @@ class OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters:
         return self.__problem    
 
 
-class OnesCountMaxProblemIntegerLinearProgrammingSolution(SolutionVoidObject):
-    def __init__(self, sol:'OnesCountMaxProblemIntegerLinearProgrammingSolver')->None:
-        super().__init__()
-        self.__sol = sol
-
-    def string_representation(self):
-        return str(self.__sol)    
-
 class OnesCountMaxProblemIntegerLinearProgrammingSolver(Optimizer):
 
-    def __init__(self, output_control:OutputControl,  problem:OnesCountMaxProblem)->None:
-        """
-        Create new `OnesCountMaxProblemIntegerLinearProgrammingSolver` instance
-
-        :param `OutputControls` output_control: object that control output
-        :param `OnesCountMaxProblem` problem: problem to be solved
-        """
-        if not isinstance(output_control, OutputControl):
-            raise TypeError('Parameter \'output_control\' must have type \'OutputControl\'.')
-        if not isinstance(problem, OnesCountMaxProblem):
-            raise TypeError('Parameter \'problem\' must have type \'OnesCountMaxProblem\'.')
-        super().__init__("OnesCountMaxProblemIntegerLinearProgrammingSolver", output_control=output_control, 
+    def __init__(self, 
+                problem:Problem,
+                output_control:OutputControl=OutputControl()
+                )->None:
+        super().__init__(name="OnesCountMaxProblemIntegerLinearProgrammingSolver", output_control=output_control, 
                 problem=problem)
         self.__model = Model()
 
+    def init(self)->None:
+        """
+        Initialization of the ILP solver
+        """
+        super().init()
+        
     @classmethod
     def from_construction_tuple(cls, 
             construction_params:OnesCountMaxProblemIntegerLinearProgrammingSolverConstructionParameters=None):

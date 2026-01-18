@@ -70,7 +70,10 @@ class OnesCountMaxProblemBinaryIntSolution(Solution[int,str]):
         :rtype: `OnesCountMaxProblemBinaryIntSolution`
         """
         return self.__copy__()
-        
+    
+    def copy_from(self, original):
+        return super().copy_from(original)  
+    
     def obtain_feasible_representation(self, problem:Problem) -> int:
         """
         Helper function that modifies representation to be feasible

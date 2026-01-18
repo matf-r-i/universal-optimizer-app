@@ -31,7 +31,7 @@ class FunctionOneVariableMinProblem(Problem):
             raise TypeError("Parameter \'domain_low\' should be \'int\' or \'float\'.")
         if not isinstance(domain_high, int | float):
             raise TypeError("Parameter \'domain_high\' should be \'int\' or \'float\'.")
-        super().__init__(name="FunctionOneVariableMaxProblemMax", is_minimization=True, is_multi_objective=False)
+        super().__init__(name="FunctionOneVariableMaxProblem", is_minimization=True, is_multi_objective=False)
         self.__expression:str = expression
         self.__domain_low:float = domain_low
         self.__domain_high:float = domain_high
@@ -57,7 +57,7 @@ class FunctionOneVariableMinProblem(Problem):
     @classmethod
     def from_input_file(cls, input_file_path:str, input_format:str):
         """
-        Additional constructor. Create new `FunctionOneVariableMaxProblemMax` instance when input file and input format are specified
+        Additional constructor. Create new `FunctionOneVariableMaxProblem` instance when input file and input format are specified
 
         :param str input_file_path: path of the input file with problem data
         :param str input_format: format of the input
