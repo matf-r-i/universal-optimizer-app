@@ -1,11 +1,3 @@
-Library
-=======
-
-.. toctree::
-   :maxdepth: 4
-
-   uo
-
 Optimization
 ============
 

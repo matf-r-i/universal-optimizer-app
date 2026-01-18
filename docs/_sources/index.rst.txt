@@ -21,8 +21,6 @@ Library  `Universal optimizer <https://github.com/math-rs-comp-int/universal-opt
    :maxdepth: 1
    :caption: In-depth Information
 
-   implemented_algorithms
-
    problems_to_be_solved
 
 .. toctree::

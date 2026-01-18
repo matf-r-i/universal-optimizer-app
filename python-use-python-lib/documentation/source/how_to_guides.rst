@@ -72,11 +72,11 @@ Installation the application libs with `pip` from provided source code
 
 3. Install `universal-optimizer-lib` in editable form  
 
-Library `universal-optimizer-lib`, described `here <https://matf-r-i.github.io/universal-optimizer-lib-python/>`_ should be installed. Source code of that library id within folder `lib`. 
+Library `universal-optimizer-lib`, described `here <https://matf-r-i.github.io/universal-optimizer-lib-python/>`_ should be installed. Source code of that library is added as a `submodule <https://git-scm.com/docs/git-submodule>`_ within folder `lib`. 
 
 .. code-block::
 
-        > pip install -e libs
+        > pip install -e lib
 
 
 Running of all the unit tests within application
