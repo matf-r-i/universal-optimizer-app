@@ -14,6 +14,7 @@ bitstring = "^4.1.1"
 coverage = "^7.4.0"
 highspy = "^1.12.0"
 linopy = "^0.5.8"
+rdkit = "^2025.9.3"
 
 [tool.poetry.group.docs] 
 optional = true

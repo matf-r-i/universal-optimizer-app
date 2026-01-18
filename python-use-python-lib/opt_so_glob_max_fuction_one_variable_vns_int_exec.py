@@ -15,7 +15,6 @@ from uo.algorithm.metaheuristic.variable_neighborhood_search.vns_optimizer impor
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem import FunctionOneVariableMaxProblem
 from opt.single_objective.glob.function_one_variable_max_problem.function_one_variable_max_problem_binary_int_solution import FunctionOneVariableMaxProblemBinaryIntSolution
 
-
 def main():
     problem_to_solve: FunctionOneVariableMaxProblem = FunctionOneVariableMaxProblem.from_input_file(
         input_file_path='./opt/single_objective/glob/function_one_variable_max_problem/inputs/(7-x2)[-3,3].txt',

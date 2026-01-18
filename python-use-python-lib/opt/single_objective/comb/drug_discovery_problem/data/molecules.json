@@ -466,5 +466,9 @@
     {
         "SMILES": "CCO",
         "Description": "ethanol"
+    },
+    {
+        "SMILES": "CCO",
+        "Description": "ethanol"
     }
 ]

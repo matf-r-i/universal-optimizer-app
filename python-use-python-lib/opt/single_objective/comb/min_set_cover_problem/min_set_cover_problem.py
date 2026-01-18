@@ -25,7 +25,7 @@ class MinSetCoverProblem(Problem):
     """
     Class representing the Minimum Set Cover Problem.
 
-    This class inherits from the TargetProblem class and is used to define and solve the Set Covering Problem Problem. The problem is defined by a set U and a list of subsets of U named S.
+    This class inherits from the Problem class and is used to define and solve the Set Covering Problem Problem. The problem is defined by a set U and a list of subsets of U named S.
     
     Attributes:
         universe (Set[int]): set of elements U that should be covered.
