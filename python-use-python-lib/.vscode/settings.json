@@ -4,6 +4,7 @@
         "ccud",
         "copybutton",
         "eccs",
+        "ensurepath",
         "Filipovic",
         "Filipović",
         "highspy",
@@ -22,6 +23,7 @@
         "nsup",
         "optimas",
         "pathlib",
+        "pipx",
         "Pixmap",
         "quickstart",
         "rdcs",
@@ -32,6 +34,7 @@
         "tobitarray",
         "tobytes",
         "toctree",
+        "venv",
         "viewcode",
         "xarray"
     ],

@@ -1,99 +1,134 @@
-How-to Guides
-=============
+Installing the application
+**************************
 
-- **Installation the library from provided source code**
+There are multiple ways of installing the application libs. The recommended way is to use `poetry` package manager, which will create virtual environment for the project and install all required dependencies.
 
-    1. Installing  and initializing `poetry` through `pipx`
+Alternative way is to install the application libs using `pip` package manager within already existing virtual environment.
 
-    .. code-block::
-        :caption: Installing pipx
-
-            > python -m pip install --user pipx 
-            > python -m pipx ensurepath
+Installation the application libs with `poetry` from provided source code
+=========================================================================
 
 
-    .. code-block::
-        :caption: Installing poetry
+1. Installing  and initializing `poetry` through `pipx`
 
-            > pipx install poetry
+Firstly, `pipx` should be installed.
 
-    2. Check if `poetry` is successfully installed
+.. code-block::
 
-    .. code-block::
-        :caption: Check poetry version
-
-            > poetry --version
-
-    3. Install project's packets and documentation builder packets with `poetry` 
-
-    .. code-block::
-        :caption: Specify that `poetry` will work with python version 3.11 
-
-            > poetry env use 3.11
-
-    The previous command will create virtual environment based on `python3.11` in subdirectory `/.venv` 
-
-    .. code-block::
-        :caption: Install dependencies (and documentation dependencies) with `poetry`
-
-            > poetry install --with docs
-
-- **Running of all the unit tests within developed applications**
-
-    - Execute command for running tests from directory `/` 
-
-    .. code-block::
-        :caption: Run all unit tests within project
-
-            > python -m unittest
+        > python -m pip install --user pipx 
+        > python -m pipx ensurepath
 
 
-    - Execute command for obtaining coverage analysis from directory `/` 
+When `pipx` is installed, the installation of `poetry` can be executed,
 
-    .. code-block::
-        :caption: Obtain coverage analysis of tests within project
+.. code-block::
 
-            > python -m coverage run -m unittest
-            > python -m coverage report
+        > pipx install poetry
+
+2. Check if `poetry` is successfully installed
+
+.. code-block::
+
+        > poetry --version
+
+3. Install project's packets and documentation builder packets with `poetry` 
+
+.. code-block::
+
+        > poetry env use 3.13
+
+    The previous command will create virtual environment based on `python3.13` in subdirectory `/.venv`. After that, `poetry` will installed specified libs, as well as libs that are used for documentation.
+
+.. code-block::
+
+        > poetry install --with docs
 
 
-- **Building documentation for the library**
+4. Install `universal-optimizer-lib` in editable form  
 
-    1. Build documentation sources into `/documentation/source` folder from `python` source files 
+Library `universal-optimizer-lib`, described `here <https://matf-r-i.github.io/universal-optimizer-lib-python/>`_ should be installed. Source code of that library id within folder `lib`. 
 
-    .. code-block::
-        :caption: Build documentation sources
+.. code-block::
 
-            > sphinx-apidoc -o documentation/source/ uo
-            > sphinx-apidoc -o documentation/source/ opt
+        > pip install -e libs
 
 
-    2. Change current directory to `/documentation` 
+Installation the application libs with `pip` from provided source code
+======================================================================
 
-    .. code-block::
-        :caption: Change directory
+1. Create and activate virtual environment
 
-            > cd documentation
+.. code-block::
 
-    3. Clean previously builded HTML documentation 
+        > python -m venv venv
+        > source venv/bin/activate      # On Linux
+        > .\venv\Scripts\activate       # On Windows
 
-    .. code-block::
-        :caption: Clean HTML documentation 
+2. Install required dependencies from `requirements.txt` file
 
-            /documentation> ./make clean html
+.. code-block::
 
-    4. Build HTML documentation from `/documentation/source` directory. Created documentation is within `/documentation/build/html` directory. 
+        > pip install -r requirements.txt
 
-    .. code-block::
-        :caption: Build HTML documentation 
+3. Install `universal-optimizer-lib` in editable form  
 
-            /documentation> ./make html
+Library `universal-optimizer-lib`, described `here <https://matf-r-i.github.io/universal-optimizer-lib-python/>`_ should be installed. Source code of that library id within folder `lib`. 
 
-    5. Generated documentation, that is in folder `/documentation/build/html` should be then copied into folder `/docs`.
+.. code-block::
 
-    .. code-block::
-        :caption: Copy generated HTML documentation 
+        > pip install -e libs
 
-            /documentation> cp build/html/*.* ../docs
+
+Running of all the unit tests within application
+************************************************
+
+Unit tests are located within `tests` subdirectory . To run all the unit tests, the following commands can be used.
+
+.. code-block::
+
+        > python -m unittest
+
+Obtaining coverage analysis of all unit tests within library can be done with `coverage` package. The following commands can be used:
+
+
+.. code-block::
+
+        > python -m coverage run -m unittest
+        > python -m coverage report
+
+
+Building documentation for the application
+*******************************************
+
+1. Build documentation sources into `/documentation/source` folder from `python` source files 
+
+.. code-block::
+
+        > sphinx-apidoc -o documentation/source/ opt
+
+
+2. Change current directory to `/documentation` 
+
+.. code-block::
+
+        > cd documentation
+
+3. Clean previously builded HTML documentation 
+
+.. code-block::
+
+        /documentation> ./make clean html
+
+4. Build HTML documentation from `/documentation/source` directory. Created documentation is within `/documentation/build/html` directory. 
+
+.. code-block::
+
+        /documentation> ./make html
+
+5. Generated documentation, that is in folder `/documentation/build/html` should be then copied into folder `/docs`.
+
+.. code-block::
+
+        /documentation> cp build/html/*.* ../docs
 
 
