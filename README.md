@@ -1,4 +1,4 @@
-# Universal optimizer aplication
+# Universal optimizer application
 
 Currently, this is a Python application that uses Python library `universal-optimizer-lib-python`. 
 Application resides in folder `/python_use_python_lib`.
