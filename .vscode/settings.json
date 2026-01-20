@@ -10,5 +10,9 @@
         "./use-python-lib",
         "-p",
         "test_*.py"
+    ],
+    "cSpell.words": [
+        "Lsbi",
+        "metaheuristic"
     ]
 }
