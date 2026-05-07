@@ -23,7 +23,7 @@ from copy import deepcopy
 from random import choice
 from random import random
 
-from bitstring import Bits, BitArray, BitStream, pack
+from bitstring import BitArray
 
 
 from uo.problem.problem import Problem
@@ -131,8 +131,8 @@ class MaxCliqueProblemBitArraySolution(Solution[BitArray,str]):
         """
         x: BitArray = representation
         g: nx.Graph = problem.graph
-        for i in range(len(g.nodes)):
-            for j in range(i+1, len(g.nodes)):
+        for i in range(len(x)):
+            for j in range(i+1, len(x)):
                 if not g.has_edge(str(i+1), str(j+1)) and x[i] and x[j]:
                     return QualityOfSolution(-1, None, -1, None, True)
         ones_count = x.count(True)

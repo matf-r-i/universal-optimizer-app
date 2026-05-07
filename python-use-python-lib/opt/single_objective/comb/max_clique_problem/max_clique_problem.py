@@ -16,10 +16,8 @@ root_dir = directory.parent.parent.parent.parent.parent
 sys.path.append(str(root_dir))
 
 import networkx as nx
-import json
 
 from uo.problem.problem import Problem
-from uo.utils.logger import logger
 
 class MaxCliqueProblem(Problem):
     """
@@ -60,7 +58,7 @@ class MaxCliqueProblem(Problem):
         return obj
             
     @classmethod
-    def from_graph(cls, graph:nx.Graph):
+    def from_graph(cls, graph:nx.Graph)->'MaxCliqueProblem':
         """
         Additional constructor. Create new `MaxCliqueProblem` instance when graph and source_terminal_pairs are specified
 
@@ -69,7 +67,7 @@ class MaxCliqueProblem(Problem):
         return cls(graph)
 
     @classmethod
-    def __load_from_file__(cls,file_path:str, verbosity: bool=False)->nx.Graph:
+    def __load_from_file__(cls, file_path:str, verbosity: bool=False)->nx.Graph:
 
         edges = []
         with open(file_path, 'r') as file:
