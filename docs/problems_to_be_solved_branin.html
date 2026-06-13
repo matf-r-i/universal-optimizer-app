@@ -4,14 +4,14 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Problems to be solved &mdash; Optimization Algorithms Library 0.1.0 documentation</title>
+  <title>Branin Minimization Problem &mdash; Optimization Algorithms Library 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
+
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=01f34227"></script>
@@ -22,18 +22,18 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Ones Count Max Problem" href="problems_to_be_solved_ones_count.html" />
-    <link rel="prev" title="Installing the application" href="how_to_guides.html" /> 
+    <link rel="next" title="Drug Discovery Problem" href="problems_to_be_solved_drug_discovery_problem.html" />
+    <link rel="prev" title="Function One Variable Max Problem" href="problems_to_be_solved_function_one_variable_max.html" />
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
 
-          
-          
+
+
           <a href="index.html" class="icon icon-home">
             Optimization Algorithms Library
           </a>
@@ -54,12 +54,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">In-depth Information</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Problems to be solved</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="problems_to_be_solved.html">Problems to be solved</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_ones_count.html">Ones Count Max Problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_minimum_multi_cut.html">Minimum Multi Cut Problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_set_covering_problem.html">Minimum Set Cover Problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_function_one_variable_max.html">Function One Variable Max Problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_branin.html">Branin Minimization Problem</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Branin Minimization Problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bayesian-optimization-example">Bayesian optimization example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_drug_discovery_problem.html">Drug Discovery Problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_knapsack_problem.html">Knapsack Problem</a></li>
 </ul>
@@ -90,54 +93,48 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Problems to be solved</li>
+          <li class="breadcrumb-item"><a href="problems_to_be_solved.html">Problems to be solved</a></li>
+      <li class="breadcrumb-item active">Branin Minimization Problem</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/problems_to_be_solved.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/problems_to_be_solved_branin.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
-  <section id="problems-to-be-solved">
-<h1>Problems to be solved<a class="headerlink" href="#problems-to-be-solved" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Problems</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_ones_count.html">Ones Count Max Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_minimum_multi_cut.html">Minimum Multi Cut Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_set_covering_problem.html">Minimum Set Cover Problem</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_set_covering_problem.html#problem-definition">Problem Definition</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_function_one_variable_max.html">Function One Variable Max Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_branin.html">Branin Minimization Problem</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_branin.html#bayesian-optimization-example">Bayesian optimization example</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_drug_discovery_problem.html">Drug Discovery Problem</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_drug_discovery_problem.html#problem-definition">Problem Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_drug_discovery_problem.html#applications">Applications</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="problems_to_be_solved_knapsack_problem.html">Knapsack Problem</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_knapsack_problem.html#implemented-contributions">Implemented contributions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_knapsack_problem.html#input-format">Input format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_knapsack_problem.html#examples-of-use">Examples of use</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems_to_be_solved_knapsack_problem.html#command-line-solver">Command-line solver</a></li>
-</ul>
-</li>
-</ul>
+
+  <section id="branin-minimization-problem">
+<span id="problem-branin-min"></span><h1>Branin Minimization Problem<a class="headerlink" href="#branin-minimization-problem" title="Link to this heading"></a></h1>
+<p>The Branin-Hoo function is a bounded, continuous, two-dimensional minimization
+benchmark. It is multimodal and has three global minimizers with the same
+objective value, which makes it a useful demonstration problem for Bayesian
+optimization.</p>
+<p>The search domain is <code class="docutils literal notranslate"><span class="pre">x1</span> <span class="pre">in</span> <span class="pre">[-5,</span> <span class="pre">10]</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span> <span class="pre">in</span> <span class="pre">[0,</span> <span class="pre">15]</span></code>. The known minimum
+objective is approximately <code class="docutils literal notranslate"><span class="pre">0.397887</span></code> at <code class="docutils literal notranslate"><span class="pre">(-pi,</span> <span class="pre">12.275)</span></code>, <code class="docutils literal notranslate"><span class="pre">(pi,</span> <span class="pre">2.275)</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">(3*pi,</span> <span class="pre">2.475)</span></code>.</p>
+<p>Universal Optimizer compares solutions by maximizing fitness, so
+<a class="reference internal" href="opt.single_objective.glob.branin_min_problem.html#opt.single_objective.glob.branin_min_problem.branin_min_problem_real_solution.BraninMinProblemRealSolution" title="opt.single_objective.glob.branin_min_problem.branin_min_problem_real_solution.BraninMinProblemRealSolution"><code class="xref py py-class docutils literal notranslate"><span class="pre">opt.single_objective.glob.branin_min_problem.branin_min_problem_real_solution.BraninMinProblemRealSolution</span></code></a>
+reports the Branin function as <code class="docutils literal notranslate"><span class="pre">objective_value</span></code> and its negative as
+<code class="docutils literal notranslate"><span class="pre">fitness_value</span></code>.</p>
+<section id="bayesian-optimization-example">
+<h2>Bayesian optimization example<a class="headerlink" href="#bayesian-optimization-example" title="Link to this heading"></a></h2>
+<p>Run the deterministic example from <code class="docutils literal notranslate"><span class="pre">python-use-python-lib</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python opt_so_glob_min_branin_bo_real_exec.py</span>
+</pre></div>
 </div>
+<p>The example uses six random initial points, a total budget of 40 evaluations,
+and random seed 17. It prints the best vector, objective, fitness, distance to
+the nearest known minimizer, and evaluation statistics.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="how_to_guides.html" class="btn btn-neutral float-left" title="Installing the application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="problems_to_be_solved_ones_count.html" class="btn btn-neutral float-right" title="Ones Count Max Problem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="problems_to_be_solved_function_one_variable_max.html" class="btn btn-neutral float-left" title="Function One Variable Max Problem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="problems_to_be_solved_drug_discovery_problem.html" class="btn btn-neutral float-right" title="Drug Discovery Problem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -149,7 +146,7 @@
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+
 
 </footer>
         </div>
@@ -160,7 +157,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
 
 </body>
 </html>
