@@ -49,7 +49,7 @@ protobuf==6.33.5
 pyasn1==0.6.4
 pyasn1_modules==0.4.2
 Pygments==2.20.0
-pylint==3.3.9
+pylint==4.0.9
 PyQt5==5.15.11
 PyQt5-Qt5==5.15.2
 PyQt5_sip==12.18.0
